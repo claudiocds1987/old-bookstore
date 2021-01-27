@@ -1,0 +1,60 @@
+.box-principal{
+    min-height: 100vh;
+    .box{
+        margin-top: 50px !important;
+    }
+}
+
+
+
+.img-book{
+    //max-width: 100%;
+    max-width: 100px;
+    max-height: 120px;
+}
+
+.box-contenedor{
+    margin: 0 auto !important;
+}
+
+#card-inputs{
+    margin: 0 auto !important;
+    max-width: 350px !important;
+}
+
+.img-envios{
+    width: 100%;
+    max-height: 80px !important;
+}
+
+#btn-pagar{
+    height: 36px !important;
+}
+
+.box-input{
+    margin: 0 auto !important;
+}
+
+.credit-card{
+    margin: 20px auto !important;
+    //margin-top: 10px !important;
+    max-width: 350px;
+    max-height: 50px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#box1{
+    background-color: orange;
+}
+
+#box2{
+    margin-bottom: 15px !important;
+}
+
+.mat-raised-button{
+    color: green !important;
+}
+

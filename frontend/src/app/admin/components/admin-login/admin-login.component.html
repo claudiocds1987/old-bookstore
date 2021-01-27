@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4">
+
+        </div>
+        <div class="col-sm-4">
+         
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h2 class="text-center">Admin</h2>
+                    <form [formGroup]="form" (ngSubmit)="login($event)">
+                        <div class="form-group">
+                            <input type="email" class="form-control" formControlName="email" (ngModelChange)="adminExist = true" placeholder="@email">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" formControlName="password" (ngModelChange)="adminExist = true" placeholder="password">            
+                        </div>
+                        <button type="submit" class="btn btn-primary table">Login</button>
+                    </form>
+                    <div *ngIf="!adminExist">
+                        <p class="text-center text-danger">No existe el administrador</p>
+                    </div>
+                </div>
+            </div>            
+        </div>
+        <div class="col-sm-4">
+            
+        </div>
+    </div>
+</div>
+

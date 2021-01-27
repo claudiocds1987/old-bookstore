@@ -1,0 +1,40 @@
+<div class="container box-principal">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <!-- si ordersArray tiene contenido muestro tabla -->
+            <div *ngIf="orderDetailArray.length > 0" class="card">
+                <div class="card-body">
+                    <h4 style="font-weight: bolder;" class="text-center">Detalle de tu compra</h4>
+                    <!-- <img src="./../../../../assets/images/my-purchases.svg"> -->
+                    <table class="table table-hover">
+                        <thead class="thead-dark">
+                            <tr class="text-center">
+                                <th></th>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Cantidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="text-center" *ngFor="let detail of orderDetailArray; index as i">
+                                <td><img [src]="linkImg(this.bookArray[i].url_image)" [alt]="this.bookArray[i].name" class="image-size"></td>
+                                <td>{{ this.bookArray[i].name }}</td>
+                                <td>{{ detail.product_price | currency }}</td>
+                                <td>{{ detail.product_quantity }}</td>                             
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="box-btn-volver">
+                        <a style="text-decoration: none;" mat-raised-button color="basic" [routerLink]="'/user-purchases'">
+                            <mat-icon class="icon-volver">arrow_back_ios_new</mat-icon>
+                            Volver
+                        </a>
+                    </div>                  
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>

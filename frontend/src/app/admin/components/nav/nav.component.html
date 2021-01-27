@@ -1,0 +1,52 @@
+<header>
+  <div class="contenedor">
+    <mat-icon md-48 class="icon-bookstore">eco</mat-icon>
+    <h1>Admin Bookstore</h1>
+    <!-- ////////////// sub menu ////////////////////////////////////// -->
+    <!-- <div class="sub-menu" *ngIf="username">
+      <button mat-button [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon>
+        {{ username }}
+      </button>
+      <mat-menu #menu="matMenu">
+        <a mat-menu-item [routerLink]="'/user-purchases'">
+          <mat-icon>shopping_cart</mat-icon>
+          Mis compras
+        </a>
+        <a mat-menu-item [routerLink]="'/login'">
+          <mat-icon>person_off</mat-icon>
+          Cerrar sesión
+        </a>
+      </mat-menu>
+    </div>  -->
+    <!-- ////////////////////////////////////////////////////////////// -->
+    <input type="checkbox" id="menu-bar">
+    <label class="icon-menu" for="menu-bar">
+      <mat-icon>menu</mat-icon>
+    </label>
+    <nav class="menu">
+      <div class="dropdown">
+        <a routerLinkActive="activo" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Libros
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" [routerLink]="'/books-list'">Listar/editar</a>
+          <a class="dropdown-item" [routerLink]="'/add-book'">Agregar</a>
+          <a class="dropdown-item" [routerLink]="'/author-panel'">Autor</a>
+          <a class="dropdown-item" [routerLink]="'editorial-panel'">Editorial</a>
+          <a class="dropdown-item" [routerLink]="'category-panel'">Categoria</a>
+        </div>
+      </div>     
+      <a routerLinkActive="activo" [routerLink]="'admin-principal'">Home</a>
+      <a [routerLink]="'admin-principal'">Clientes</a>
+      <a [routerLink]="'admin-principal'">Ventas</a>
+    </nav>
+  </div>
+</header>
+
+
+
+
+
+
+

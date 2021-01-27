@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="box-flex">
+    <div class="card rounded shadow-sm border-0">
+      <div class="row">
+        <div class="col-md-4 text-center">
+          <img [src]="book.url_image" class="book-img" [alt]="book.name">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h2 class="card-header font-weight-bold mb-2 text-center">{{ book.name }}</h2>
+            <p style="padding: 5px; text-align: justify;" class="font-italic text-muted mb-4"> {{ book.description }}</p>
+            <!-- bookArray[0].autor  porque en la consulta de la db devuelve authors.name as autor -->
+            <div class="box-data">
+              <div class="col1">
+                <p class="a font-weight-bold font-italic mb-1">Autor: {{ autorName }}</p>
+                <p class="a font-weight-bold font-italic mb-1">Lanzamiento: {{ book.year }}</p>
+                <p class="a font-weight-bold font-italic mb-1">Editorial: {{ editorialName }}</p>
+                <p class="a font-weight-bold font-italic mb-1">Cantidad disponible: {{ book.quantity }}</p>
+                <p class="a font-weight-bold font-italic mb-1">Precio: ${{ book.price }}</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+              <div class="col2">
+                <img src="./../../../../assets/images/icons-credit-cards.png">
+              </div>
+            </div>
+
+            <div class="card-footer text-center">
+              <button class="mr-1" 
+                mat-mini-fab color="primary" 
+                aria-label="shopping cart"
+                (click)="addShoppingCart(book)">
+                <mat-icon>shopping_cart</mat-icon>
+              </button>
+              <a [routerLink]="'/home'" mat-mini-fab color="warn" aria-label="home">
+                <mat-icon>home</mat-icon>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

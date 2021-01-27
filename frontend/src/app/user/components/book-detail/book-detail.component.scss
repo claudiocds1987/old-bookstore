@@ -1,0 +1,35 @@
+
+.box-flex{
+    display: flex;
+    min-height: 100vh;
+    justify-content: center; // (alinea al centro eje horizontal cualquier elemento que este en div .container)
+	align-items: center; // (alinea al centro eje vertical qcualquier elemento que este en div container)
+}
+
+.card{
+    margin-top: 80px;
+    margin-bottom: 30px;
+    max-width: 720px;
+}
+
+.book-img{
+    box-shadow: //0 0 0 10px #fff,
+                //0 0 0 11px #ccc,
+                0 20px 20px -12px #000; 
+    margin-top: 25px;
+    max-width: 200px;
+    max-height: 280px;
+}
+
+.box-data{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    img{
+        box-shadow: 0 0 0 2px #fff,
+                    //0 0 0 6px #ccc,
+                    0 20px 20px -12px #000; 
+        max-width: 150px;
+        max-height: 140px;
+    }
+}

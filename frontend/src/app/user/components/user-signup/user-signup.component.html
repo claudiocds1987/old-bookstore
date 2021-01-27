@@ -1,0 +1,72 @@
+<div class="box">
+    <div class="card">
+        <div class="card-body">
+            <div style="background: rgb(197, 253, 67);" class="card-header">
+                <div class="text-center">
+                    <mat-icon class="icon-how-to-reg">how_to_reg</mat-icon>
+                    <h2>Sign up</h2>
+                </div>
+            </div>
+            <form [formGroup]="form" (ngSubmit)="signUp($event)">
+                <div class="form-group">
+                    <mat-icon class="icon">email</mat-icon>
+                    <label for="email">Email</label>
+                    <input type="text" id="email" formControlName="email" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">el email es obligatorio</div>
+                        <div *ngIf="f.email.errors.email">El formato de email no es valido</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <mat-icon class="icon">face</mat-icon>
+                    <label for="username">Nombre de usuario</label>
+                    <input type="text" id="username" formControlName="username" class="form-control"
+                        [(ngModel)]="usernameClean" [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+                        (blur)="usernameClean = deleteWhiteSpace(usernameClean)" />
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">este campo es obligatorio!</div>
+                        <div *ngIf="f.username.errors.minlength">debe tener un mínimo de 5 caracteres</div>
+                        <div *ngIf="f.username.errors.maxlength">solo hasta 15 caracteres permitidos</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <mat-icon class="icon">vpn_key</mat-icon>
+                    <label for="pass1">Password</label>
+                    <input type="password" id="pass1" formControlName="password" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">este campo es obligatorio!</div>
+                        <div *ngIf="f.password.errors.minlength">el password debe tener un minimo de 6 caracteres</div>
+                        <div *ngIf="f.password.errors.maxlength">El password es muy largo!</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <mat-icon class="icon">vpn_key</mat-icon>
+                    <label for="pass2">Confirm Password</label>
+                    <input type="password" id="pass2" formControlName="confirmPassword" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+                    <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                        <div *ngIf="f.confirmPassword.errors.required">este campo es obligatorio!</div>
+                        <div *ngIf="f.confirmPassword.errors.mustMatch">las contraseñas deben ser iguales!</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" mat-raised-button color="color-green-light" class="btn-block">Registrarse
+                    </button>
+                </div>
+            </form>
+            <div class="text-center" *ngIf="message!= null">
+                <p class="text-danger">{{ message }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col1">
+        <span>col1</span>
+    </div>
+    <div class="col2">
+        <span>col2</span>
+    </div>
+</div>

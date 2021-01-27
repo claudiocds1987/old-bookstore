@@ -1,0 +1,147 @@
+.box-principal {
+  min-height: 100vh;
+}
+
+.box-container1 {
+  margin-top: 50px;
+}
+
+.box-search {
+  display        : flex;
+  justify-content: space-around;
+}
+
+.icon {
+  vertical-align: middle !important;
+}
+
+.btn-buscar {
+  //margin-top: 25% !important;
+  margin-top: 10px !important;
+}
+
+.btn-listar-todos {
+  margin-top: 15px !important;
+  height    : 32px !important;
+}
+
+.box-listarTodos {
+  margin-left: 8px;
+}
+
+.btn-listarTodos {
+  margin-top: 15px !important;
+}
+
+h3 {
+  margin-top : 15px !important;
+  font-style : italic;
+  font-weight: 500;
+}
+
+header,
+.box-icons-social-media {
+  margin-top: 10px;
+}
+
+.box-icons-social-media {
+  display        : flex;
+  // cuando es flex la prop. margin deja de funcionar, utilizo flex-end para alinear a la derecha
+  justify-content: flex-end;
+}
+
+@media (max-width: 760px) {
+  .box-icons-social-media {
+    justify-content: center;
+  }
+
+  .header {
+    margin-top: 15px;
+  }
+}
+
+p {
+  font-style: italic;
+  margin-top: 5px;
+}
+
+.logo {
+  //margin-top: 15px !important;
+  max-width : 30px;
+  max-height: 30px;
+}
+
+.book-grid {
+  // margin-top           : 10px !important;
+  display              : grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); // nos hará breakpoints cada 182x
+}
+
+.card {
+  margin       : 15px;
+  border-radius: 5px;
+  display      : block; // para que el ancho y alto sean dinamico respecto al elemento
+  //box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+
+}
+
+// boton para comprar
+.mat-banner-color{
+  background: rgb(41, 50, 64);
+}
+
+.icon-shopping-cart{
+  color: #c5fd43 !important;
+}
+
+.crop-image {
+  margin-top: 2px;
+  padding   : 8px;
+  display   : block;
+  height    : 250px;
+  width     : 100%;
+
+  img {
+    object-fit     : contain;
+    height         : 100%;
+    width          : 100%;
+    object-position: center;
+  }
+}
+
+
+.box-description {
+  margin-bottom: 10px !important;
+}
+
+.box-btn-border {
+  margin-bottom: 10px;
+}
+
+.btn-border {
+  border-radius  : 15px !important;
+  //margin-bottom: 10px;
+}
+
+a {
+  color          : grey;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #298ccf
+}
+
+.fade-in {
+  animation: fadeIn 3s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

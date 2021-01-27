@@ -1,0 +1,67 @@
+// ************** diseño de posicionamiento de divs ***************** //
+// .caca{
+//     min-height: 100vh;
+// }
+
+.box{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: center; // (alinea al centro eje horizontal cualquier elemento que este en div .container)
+	align-items: center; // (alinea al centro eje vertical qcualquier elemento que este en div container)
+}
+
+.card{
+    // max-width no funciona por estar dentro de un div con display flex
+    top: 80px; //si molesta sacarlo
+    width: 300px !important;
+    position: absolute;
+    z-index: 10;
+}
+
+// .form.control se ve en el inspector, le quito altura a los input 
+.form-control{
+    height: 0px;
+}
+
+// boton registrarse
+.mat-color-green-light{
+    background:rgb(41, 50, 64);
+    color: white;
+}
+
+.col1, .col2{
+    width: 100%;
+    display: flex;
+    align-items: center; // alineo en centro vertical todo lo que haya en aside y main
+    min-height: 50vh;
+    span{
+        opacity: 0;
+    }
+}
+
+.col1{
+    background: rgb(41, 50, 64);
+}
+
+.col2{
+    background: #1b9ffd;
+  
+}
+
+// ************** fin ***************** //
+
+.icon{
+    vertical-align: middle !important;
+    margin-right: 5px !important;
+}
+
+.card-header{
+    margin-bottom: 10px;
+}
+
+.icon-how-to-reg{
+    font-size: 50px !important;
+    color: white !important;
+    float: left !important;
+}

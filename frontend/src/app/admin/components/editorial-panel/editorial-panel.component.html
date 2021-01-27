@@ -1,0 +1,82 @@
+<div class="container box-principal">
+    <div class="row box-fila">
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body">
+                    <form #categoryForm="ngForm" (ngSubmit)="createEditorial(categoryForm)">
+                        <div class="form-group">
+                            <label>Nombre de editorial</label>
+                            <input type="text" name="name" 
+                            class="form-control capitalize"
+                            [(ngModel)]="editorial.name"
+                            (blur)="editorial.name= cleanUnnecessaryWhiteSpaces(editorial.name)"
+                            placeholder="Ingrese nombre de editorial"
+                            maxlength="50">
+                            <button type="submit" class="btn btn-success btn-block">Guardar</button>
+                        </div>
+                    </form>                   
+                </div>
+            </div>
+            <div class="text-center my-4">
+                <a [routerLink]="'./../add-book'">Volver</a>
+            </div>           
+        </div>
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-body">
+                    <form #searchForm="ngForm" (ngSubmit)="getEditorialByName()" 
+                        class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2 search capitalize" 
+                        type="text" 
+                        name="search" 
+                        placeholder="nombre de editorial" 
+                        aria-label="Search" 
+                        [(ngModel)]="inputValueSearch"
+                        (blur)="inputValueSearch = cleanUnnecessaryWhiteSpaces(inputValueSearch)"
+                        maxlength="50">
+                        <button class="btn btn-outline-success mr-1" type="submit">Search</button>
+                        <button class="btn btn-outline-success" type="button" (click)="getEditorials()">Listar editoriales</button>
+                    </form>
+                    <table class="table table-striped mt-4" *ngIf="searchResult">
+                        <thead>
+                            <tr>
+                                <td></td>
+                                <th class="text-center">Editorial</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let ed of editorialArray; index as i">
+                                <input type="hidden" value={{ed.id_editorial}}>
+                                <td>{{ i + 1 }}</td>
+                                <td class="text-center">{{ ed.name }}
+                                    <div *ngIf="editing && editorialEdit.id_editorial == ed.id_editorial">
+                                        <form #editForm="ngForm" (ngSubmit)="updateEditorial()">
+                                            <div class="form-group">
+                                                <input type="text"
+                                                name="editedName" 
+                                                [(ngModel)]="editorialEdit.name"
+                                                (blur)="editorialEdit.name = cleanUnnecessaryWhiteSpaces(editorialEdit.name)"
+                                                class="form-control capitalize"
+                                                maxlength="50" 
+                                                placeholder={{ed.name}}>
+                                                <button class="btn btn-outline-success mr-1" type="submit">Update</button>
+                                                <button class="btn btn-outline-warning mr-1" type="button" (click)="editing = false">Cancelar</button>
+                                            </div>                         
+                                        </form>
+                                    </div>                                 
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-primary btn-sm" (click)="editEditorial($event, ed.id_editorial)">Editar</button>
+                                </td>
+                            </tr>
+                        </tbody>                        
+                    </table>
+                    <p style="color: red;" *ngIf="!searchResult">No se encontraron resultados</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

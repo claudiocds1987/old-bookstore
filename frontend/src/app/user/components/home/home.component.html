@@ -1,0 +1,65 @@
+<div class="box-principal">
+    <div class="container-fluid box-container1">
+        <div class="row fila">
+            <div class="col-md-4 box-search">
+                <input type="text" id="input-search" class="form-control input-buscar" [(ngModel)]="inputValue"
+                    placeholder="Buscar libro">
+
+                <button class="btn-buscar" mat-mini-fab color="basic" (click)="filterBookByName()">
+                    <mat-icon>search</mat-icon>
+                </button>
+
+                <button id="btn-listar-todos" style="margin-left: 10px;" class="btn btn-dark btn-sm btn-listar-todos"
+                    (click)="listBooks()">
+                    todos
+                </button>
+            </div>
+            <div class="col-md-4">
+                <header class="text-center mb-1 header">
+                    <h1 class="display-4 font-weight-bold">Bookstore</h1>
+                    <p class="font-italic text-muted mb-0">An awesome Bootstrap 4 cards collection with variant content.
+                    </p>
+                    <p class="font-italic text-muted">Snippet By <a href="https://bootstrapious.com" class="text-muted">
+                            <u>Bootstrapious</u></a>
+                    </p>
+                </header>
+                <!-- <h3 class="text-center font-italic text-muted">Somos lo que leemos <span *ngIf="username">{{username}}</span></h3> -->
+            </div>
+            <div class="col-md-4">
+                <div class="box-icons-social-media">
+                    <p>seguinos...</p>
+                    <img class="logo" src="./../../../../assets/images/icono-whatsapp.png">
+                    <img class="logo" src="./../../../../assets/images/icono-instagram.png">
+                    <img class="logo" src="./../../../../assets/images/icono-facebook.png">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- First Row [Prosucts]-->
+    <!-- <h2 class="font-weight-bold mb-2">From the Shop</h2>
+    <p class="font-italic text-muted mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+        incididunt.</p> -->
+
+    <div class="container box-container2">
+        <div *ngIf="bookList$ | async as books">
+            <div *ngIf="books.length > 0" class="book-grid">
+                <div *ngFor="let book of books" class="card rounded shadow-sm border-0 fade-in">
+                    <img [src]="book.url_image" [alt]="book.name" class="crop-image">
+                    <div class="text-center box-description">
+                        <a class="font-italic font-weight-light" [routerLink]="['/book-detail/', book.id_book]">{{
+                            book.name
+                            }}</a>
+                    </div>
+                    <div class="text-center box-btn-border">
+                        <button class="btn-border" mat-raised-button color="banner-color" (click)="addCarrito(book)">
+                            <mat-icon class="icon-shopping-cart">shopping_cart</mat-icon>
+                            <span style="font-size: smaller; color: white;">{{book.price | currency}}</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

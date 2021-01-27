@@ -1,0 +1,73 @@
+<div class="box">
+    <div class="card">
+
+        <div style="background: #1B9FFD;" class="card-header">
+            <div class="text-center">
+                <mat-icon class="icon-account-circle">account_circle</mat-icon>
+                <h2>Sign in</h2>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <form [formGroup]="form" (ngSubmit)="login($event)">
+                <div class="form-group mb-3">
+                    <mat-icon class="icon">face</mat-icon>
+                    <label>Nombre de usuario</label>
+                    <input type="text" class="form-control" formControlName="username" [(ngModel)]="username"
+                        placeholder="Nombre de usuario">
+                    <div *ngIf="form.get('username').errors && form.get('username').dirty">
+                        <p class="text-center mt-1 text-danger" *ngIf="form.get('username').hasError('required')">
+                            <small>Este campo es obligatorio!</small>
+                        </p>
+                        <p class="text-center mt-1 text-danger" *ngIf="form.get('username').hasError('maxlength')">
+                            <small>El nombre de usuario es muy largo!</small>
+                        </p>
+                        <p class="text-center mt-1 text-danger" *ngIf="form.get('username').hasError('minlength')">
+                            <small>necesita un minimo 5 caracteres!</small>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <mat-icon class="icon">vpn_key</mat-icon>
+                    <label>Contraseña</label>
+                    <input type="password" class="form-control" formControlName="password" [(ngModel)]="password"
+                        placeholder="Contraseña">
+                    <div *ngIf="form.get('password').errors && form.get('password').dirty">
+                        <p class="text-center text-danger mt-1" *ngIf="form.get('password').hasError('required')">
+                            <small>Este campo es obligatorio!</small>
+                        </p>
+                        <p class="text-center text-danger mt-1" *ngIf="form.get('password').hasError('maxlength')">
+                            <small>la contraseña es muy larga!</small>
+                        </p>
+                        <p class="text-center text-danger mt-1" *ngIf="form.get('password').hasError('minlength')">
+                            <small>la contraseña es corta!</small>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button [disabled]="form.invalid" type="submit" mat-raised-button color="color-blue-light"
+                        class="btn-block">Login</button>
+                </div>
+
+                <div *ngIf="!message" class="text-center">
+                    <p class="text-danger">{{message}}</p>
+                </div>
+            </form>
+
+            <div class="text-center">
+                <p>¿No tiene una cuenta? <a [routerLink]="'/signup'">Registrarme</a></p>
+                <p class="text-danger" *ngIf="message != null">{{ message }}</p>
+            </div>
+
+        </div>
+    </div>
+    <div class="col1">
+        <span>col1</span>
+    </div>
+    <div class="col2">
+        <span>col2</span>
+    </div>
+</div>
+

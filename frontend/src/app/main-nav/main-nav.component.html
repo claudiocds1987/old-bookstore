@@ -1,0 +1,40 @@
+<header>
+  <div class="contenedor">
+    <a class="icon-bookstore"><mat-icon md-48>eco</mat-icon></a>
+    <h1>
+      <!-- <mat-icon class="icon-bookstore">eco</mat-icon> -->
+      Bookstore
+    </h1>
+    <!-- ////////////// sub menu ////////////////////////////////////// -->
+    <div class="sub-menu" *ngIf="username">
+      <button mat-button [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon>
+        {{ username }}
+      </button>
+      <mat-menu #menu="matMenu">
+        <a mat-menu-item [routerLink]="'/user-purchases'">
+          <mat-icon>shopping_cart</mat-icon>
+          Mis compras
+        </a>
+        <a mat-menu-item [routerLink]="'/login'">
+          <mat-icon>person_off</mat-icon>
+          Cerrar sesión
+        </a>
+      </mat-menu>
+    </div> 
+    <!-- ////////////////////////////////////////////////////////////// -->
+    <input type="checkbox" id="menu-bar">
+    <label class="icon-menu" for="menu-bar">
+      <mat-icon>menu</mat-icon>
+    </label>
+    <nav class="menu">
+        <!--  href="/order" porque stripe si no se refresca la pagina no muestra pago de tarjeta -->
+      <a id="a-shopping-cart" (click)="checkItems()">
+        <mat-icon [matBadge]="total" matBadgeColor="warn">shopping_cart</mat-icon>
+      </a>
+      <a [routerLink]="'/home'">Home</a>
+      <a href="#">Contacto</a>
+      <a [routerLink]="'/login'">Login</a>
+    </nav>
+  </div>
+</header>

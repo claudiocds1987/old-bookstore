@@ -1,0 +1,78 @@
+<div class="container box-principal">
+    <div class="row box-fila">
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body">
+                    <form #authorForm="ngForm" (ngSubmit)="createAuthor(authorForm)">
+                        <div class="form-group">
+                            <label>Nombre de autor</label>
+                            <input type="text" name="name" 
+                            class="form-control capitalize" 
+                            [(ngModel)]="authorValue"
+                            (blur)="authorValue= cleanUnnecessaryWhiteSpaces(authorValue)"
+                            placeholder="Ingrese nombre de autor"
+                            maxlength="50">
+                            <button type="submit" class="btn btn-success btn-block">Guardar</button>
+                        </div>
+                    </form>                   
+                </div>
+            </div>
+            <div class="text-center my-4">
+                <a [routerLink]="'./../add-book'">Volver</a>
+            </div>           
+        </div>
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-body">
+                    <form #searchForm="ngForm" (ngSubmit)="getAuthorByName()" class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2 search capitalize" 
+                        type="text"
+                        name="search" 
+                        placeholder="Autor" 
+                        aria-label="Search" 
+                        [(ngModel)]="inputValueSearch"
+                        (blur)="inputValueSearch= cleanUnnecessaryWhiteSpaces(inputValueSearch)"
+                        maxlength="50">
+                        <button class="btn btn-outline-success mr-1" type="submit">Search</button>
+                        <button class="btn btn-outline-success" type="button" (click)="getAuthors()">Listar todos</button>
+                    </form>
+                    <p style="color: red;" *ngIf="authorService.authorArray.length <= 0"> No se encontraron resultados</p>
+                    <table class="table table-striped mt-4">
+                        <thead>
+                            <tr>
+                                <td></td>
+                                <th class="text-center">Autor</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let a of authorService.authorArray; index as i">
+                                <input type="hidden" value={{a.id_author}}>
+                                <td>{{ i + 1 }}</td>
+                                <td class="text-center">{{ a.name }}
+                                    <div *ngIf="editing && authorEdit.id_author == a.id_author">
+                                        <form #editForm="ngForm" (ngSubmit)="updateAuthor()">
+                                            <div class="form-group">
+                                                <input type="text" name="editedName" 
+                                                [(ngModel)]="authorEdit.name"
+                                                (blur)="authorEdit.name = cleanUnnecessaryWhiteSpaces(authorEdit.name)"
+                                                class="form-control capitalize"
+                                                maxlength="50" 
+                                                placeholder={{a.name}}>
+                                                <button class="btn btn-outline-success mr-1" type="submit">Update</button>
+                                                <button class="btn btn-outline-warning mr-1" type="button" (click)="editing = false">Cancelar</button>
+                                            </div>                         
+                                        </form>
+                                    </div>                                 
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-primary btn-sm" (click)="editAuthor($event, a.id_author)">Editar</button>
+                                </td>
+                            </tr>
+                        </tbody>                        
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

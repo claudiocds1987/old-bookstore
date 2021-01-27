@@ -1,0 +1,93 @@
+<div class="container box-principal">
+    <div class="row box-fila">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body card-body-filtro">
+                    <form #searchForm="ngForm" class="my-2 my-lg-0">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-check-inline">
+                                            <input type="radio" id="a1" name="a" value="id" [(ngModel)]="radioValue">
+                                            <label for="a1">id libro</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-check-inline">
+                                            <input type="radio" id="a2" name="a" [(ngModel)]="radioValue" value="name" checked>
+                                            <label for="a2">Nombre de libro</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-check-inline">
+                                            <input type="radio" id="a3" name="a" [(ngModel)]="radioValue"
+                                                value="author">
+                                            <label for="a3">Autor</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <input type="text" class="form-control capitalize" name="search" placeholder="Search"
+                                    aria-label="Search" [(ngModel)]="inputValue">
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="mt-3 text-center">
+                                    <button class="btn btn-outline-success mr-1" type="button"
+                                        (click)="filter()">Filtrar
+                                    </button>
+                                    <button [disabled]="btnDisabled" 
+                                        class="btn btn-outline-success" 
+                                        type="button"
+                                        (click)="getBooksWithAuthorName()">
+                                        Listar todos
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p style="color: red;" *ngIf="filterArray.length === 0"><small>No se encontraron resultados</small></p>
+    <div *ngIf="filterArray.length > 0" class="card mt-3">
+        <div *ngIf="filterArray as libros" class="card-body card-body-table">
+            <h5>Lista de libros</h5>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-center">N°</th>
+                        <th class="text-center">Image</th>
+                        <th class="text-center">Nombre de libro</th>
+                        <th class="text-center">Autor</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let b of libros; index as i">
+                        <td class="text-center">{{ i + 1 }}</td>
+                        <td class="text-center"><img [src]="linkImg(b.url_image)"></td>
+                        <td class="text-center">{{ b.name }}</td>
+                        <!-- en la query lado server tenes AS Autor, por eso aca pones b.autor -->
+                        <td class="text-center">{{ b.autor }}</td>
+                        <td class="text-center">
+                            <button mat-raised-button color="celeste"
+                                class="mr-1"
+                                [routerLink]="['/editar-libro', b.id_book]">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button  mat-raised-button color="warn">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

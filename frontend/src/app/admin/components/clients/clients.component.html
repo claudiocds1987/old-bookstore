@@ -1,0 +1,42 @@
+<div class="container">
+    <h2>Sección clientes</h2>
+    <div class="row">
+        <div class="col-sm-4">
+            <form #searchForm="ngForm" (ngSubmit)="getUserByUserName(searchForm)" class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" name="search" placeholder="Nombre de usuario del cliente" 
+                aria-label="Search" [(ngModel)]="inputValue">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="col-sm-8">
+            <h5 class="text-center">Lista de clientes</h5>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td class="text-center"></td>
+                        <th class="text-center">Usuario</th>
+                        <th class="text-center">Email</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Apellido</th>
+                        <td class="text-center"></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let u of userService.userArray; index as i">
+                        <td class="text-center">{{ i + 1 }}</td>                        
+                        <td class="text-center"> {{ u.username }} </td>
+                        <td class="text-center"> {{ u.email }}</td>
+                        <td class="text-center"> {{ u.name }}</td>
+                        <td class="text-center"> {{ u.surname }}</td>
+                        <td class="text-center">       
+                            <button class="btn btn-primary btn-md mr-1">Ventas</button>
+                            <button class="btn btn-success btn-md">Perfil</button>                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>
+

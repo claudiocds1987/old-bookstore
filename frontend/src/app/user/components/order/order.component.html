@@ -1,0 +1,140 @@
+<div class="container box-principal">
+    <mat-horizontal-stepper class="box">
+        <mat-step>
+            <ng-template matStepLabel>Sus productos</ng-template>
+            <!-- creo variable temporal en memoria con as products (ver video clase 51) -->
+            <div class="box">
+                TOTAL: <label><b>{{ total | currency }}</b></label>
+            </div>
+    
+            <div *ngIf="bookList as libros">
+                <table *ngIf="libros.length > 0" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="text-center"></th>
+                            <th class="text-center">Producto</th>
+                            <th class="text-center">Cantidad</th>
+                            <th class="text-center"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let b of libros; index as i">
+                            <td class="text-center align-middle">
+                                <img [src]="b.url_image" class="img-book">
+                            </td>
+                            <!-- en la query lado server tenes AS Autor, por eso aca pones b.autor aunque salga en rojo -->
+                            <td class="text-center align-middle">
+                                <b>{{ b.name }}</b> <br>
+                                {{b.autor}} <br>
+                                {{b.price | currency}}
+                            </td>
+    
+                            <td class="text-center align-middle">
+                                <input type="number" 
+                                [id]="b.id_book"
+                                [name]="b.id_book"
+                                [value]="1"
+                                min="1" 
+                                max="5"
+                                (change)="updateItem($event, b.id_book)">
+                            </td>
+    
+                            <td class="text-center align-middle">
+                                <button mat-mini-fab color="primary" (click)="onDelete(b.id_book)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Pago</ng-template>
+            <h1>Pago {{ total | currency }}</h1>
+            <form [formGroup]="form" (ngSubmit)="pagar($event)">
+                <mat-card id="card-inputs">
+                    <img src="./../../../../assets/images/img-envios.png" class="img-envios">
+                    <mat-card-content>
+                        <div class="row row-input">
+                            <div class="col-xs box-input">
+                                <mat-form-field class="mat-form-field">
+                                    <input [(ngModel)]="order.provincia" 
+                                    formControlName="provincia" 
+                                    type="text" 
+                                    matInput 
+                                    placeholder="Provincia">
+                                    <div *ngIf="provinciaField.errors && provinciaField.dirty">
+                                        <p *ngIf="provinciaField.hasError('required')">Complete este campo.</p>
+                                    </div>
+                                </mat-form-field>
+                            </div>
+                        </div>
+    
+                        <div class="row row-input">
+                            <div class="col-xs box-input">
+                                <mat-form-field class="mat-form-field">
+                                    <input [(ngModel)]="order.localidad" 
+                                    formControlName="localidad" 
+                                    type="text" 
+                                    matInput 
+                                    placeholder="Localidad">
+                                    <div *ngIf="localidadField.errors && localidadField.dirty">
+                                        <p *ngIf="localidadField.hasError('required')">Complete este campo.</p>
+                                    </div>
+                                </mat-form-field>
+                            </div>
+                        </div>
+    
+                        <div class="row row-input">
+                            <div class="col-xs box-input">
+                                <mat-form-field class="mat-form-field">
+                                    <input [(ngModel)]="order.adress" 
+                                    formControlName="adress" 
+                                    type="text" 
+                                    matInput 
+                                    placeholder="Domicilio">
+                                    <div *ngIf="adressField.errors && adressField.dirty">
+                                        <p *ngIf="adressField.hasError('required')">Complete este campo.</p>
+                                    </div>
+                                </mat-form-field>
+                            </div>
+                        </div>
+    
+                        <div class="row row-input">
+                            <div class="col-xs box-input">
+                                <mat-form-field class="mat-form-field">
+                                    <input [(ngModel)]="order.phone_number"
+                                    formControlName="phoneNumber" 
+                                    type="tel" 
+                                    matInput 
+                                    placeholder="Teléfono"
+                                    name="tel">
+                                    <div *ngIf="phoneNumberField.errors && phoneNumberField.dirty">
+                                        <p *ngIf="phoneNumberField.hasError('required')">Complete este campo.</p>
+                                    </div>
+                                </mat-form-field>
+                            </div>
+                        </div>
+    
+                        <div class="credit-card">
+                            <div id="box2">
+                                <div #cardInfo></div>
+                                <div class="error" *ngIf="cardError">
+                                    {{ cardError }}
+                                </div>
+                            </div>
+    
+                            <button mat-raised-button>
+                                <mat-icon>done</mat-icon>
+                                Pagar
+                            </button>
+                        </div>
+    
+                    </mat-card-content>
+                </mat-card>
+            </form>
+        </mat-step>
+    </mat-horizontal-stepper> 
+</div>
+
